@@ -71,28 +71,28 @@ export function Header() {
             exit={{ opacity: 0, y: -12, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
           >
-            <div className="grid grid-cols-2 gap-2">
+            <div className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="chrome-text rounded-2xl border border-white/[0.08] px-4 py-3 text-[0.68rem] text-white/[0.78]"
+                  className="chrome-text rounded-2xl border border-white/[0.08] px-5 py-3.5 text-[0.7rem] text-white/[0.78] transition hover:border-flame/40 hover:text-flame"
                   onClick={close}
                 >
                   {item.label}
                 </a>
               ))}
+              <a
+                href={links.telegramUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="chrome-text mt-2 inline-flex items-center justify-center gap-2 rounded-full border border-flame/70 px-5 py-3.5 text-[0.7rem] text-flame transition hover:bg-flame/10"
+                onClick={close}
+              >
+                <span className="h-2 w-2 rounded-full bg-flame shadow-ember" />
+                Обсудить проект
+              </a>
             </div>
-            <a
-              href={links.telegramUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="chrome-text mt-3 inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-flame/70 px-5 py-3 text-[0.68rem] text-flame"
-              onClick={close}
-            >
-              <span className="h-2 w-2 rounded-full bg-flame shadow-ember" />
-              Обсудить проект
-            </a>
           </motion.div>
         ) : null}
       </AnimatePresence>

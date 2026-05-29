@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Bot, Globe2, Plus, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { BubbleText } from "../../components/BubbleText";
 import { Magnetic } from "../../components/Magnetic";
 import { PrimaryLink } from "../../components/Buttons";
 import { links } from "../../config/links";
@@ -38,13 +39,13 @@ export function HeroSection() {
 
         <motion.div
           style={{ y: imageY }}
-          className="pointer-events-none absolute bottom-0 right-[-8%] z-10 w-[min(50vw,660px)] max-w-none opacity-78 sm:right-[-5%] md:right-[1%]"
+          className="pointer-events-none absolute bottom-0 right-[-8%] z-10 w-[min(50vw,660px)] max-w-none overflow-hidden opacity-78 sm:right-[-5%] md:right-[1%]"
         >
           <Magnetic strength={6} padding={180}>
             <img
               src="/assets/hero-statue.png"
               alt=""
-              className="h-auto w-full select-none object-contain [mask-image:linear-gradient(180deg,black_62%,transparent_96%)]"
+              className="h-auto w-[calc(100%_+_8px)] max-w-none select-none object-contain -ml-[8px] [mask-image:linear-gradient(180deg,black_62%,transparent_96%)]"
               draggable={false}
             />
           </Magnetic>
@@ -65,7 +66,8 @@ export function HeroSection() {
                 Тамерлан / сайты, боты, веб-сервисы
               </p>
               <h1 className="metal-text max-w-[720px] font-['Panton'] text-[clamp(2.1rem,4.55vw,4.85rem)] font-black leading-[0.98] tracking-normal">
-                Создаю сайты, лендинги и Telegram-ботов, которые выглядят сильно и приводят заявки<span className="accent-dot" />
+                <BubbleText text="Создаю сайты, лендинги и Telegram-ботов, которые выглядят сильно и приводят заявки" />
+                <span className="accent-dot" />
               </h1>
               <p className="mt-5 max-w-[620px] text-base leading-7 text-white/[0.72] sm:text-lg sm:leading-8">
                 Разрабатываю визуально сильные сайты, веб-сервисы и автоматизации для бизнеса: от первого экрана до формы заявки, Telegram-уведомлений и админки.
@@ -93,37 +95,7 @@ export function HeroSection() {
               </div>
             </motion.div>
 
-            <motion.div
-              className="ml-auto mt-[8svh] hidden w-full max-w-[300px] self-start rounded-3xl border border-white/10 bg-black/[0.28] p-5 backdrop-blur-lg xl:block"
-              initial={{ opacity: 0, x: 28 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.82, duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
-            >
-              <div className="flex items-start gap-3">
-                <Plus className="mt-1 h-4 w-4 text-flame" />
-                <p className="chrome-text text-xs leading-7 text-white/[0.72]">
-                  Структура
-                  <br />
-                  Дизайн
-                  <br />
-                  Код и заявки
-                </p>
-              </div>
-              <div className="mt-6 grid gap-3">
-                <div className="flex items-center gap-3 text-sm text-white/[0.7]">
-                  <Globe2 className="h-4 w-4 text-flame" />
-                  сайты под ключ
-                </div>
-                <div className="flex items-center gap-3 text-sm text-white/[0.7]">
-                  <Bot className="h-4 w-4 text-flame" />
-                  Telegram-боты
-                </div>
-                <div className="flex items-center gap-3 text-sm text-white/[0.7]">
-                  <Sparkles className="h-4 w-4 text-flame" />
-                  motion-интерфейсы
-                </div>
-              </div>
-            </motion.div>
+
           </div>
 
           <div className="relative z-40 -mx-5 mt-10 overflow-hidden border-t border-white/[0.12] bg-black/[0.34] py-4 sm:-mx-10 md:-mx-14 lg:-mx-20">

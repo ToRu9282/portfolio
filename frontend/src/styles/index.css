@@ -98,7 +98,7 @@ img {
 .display-text {
   font-family: "Panton", Impact, "Arial Black", sans-serif;
   letter-spacing: 0;
-  line-height: 0.86;
+  line-height: 1.15;
   text-transform: uppercase;
 }
 
@@ -119,12 +119,38 @@ img {
 }
 
 .accent-dot {
+  position: relative;
   display: inline-block;
-  width: 0.42em;
-  height: 0.42em;
-  margin-left: 0.05em;
-  background: var(--flame);
-  box-shadow: 0 0 22px rgba(255, 61, 18, 0.8);
+  width: 0.58em;
+  height: 0.58em;
+  margin-left: 0.1em;
+  vertical-align: middle;
+  transform: translateY(-0.06em);
+}
+
+.accent-dot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #ffffff 0%, #7e7e7e 43%, #f8f8f8 54%, #8a8a8a 100%);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  animation: star-rotate 5s linear infinite;
+  filter: drop-shadow(0 0 14px rgba(255, 61, 18, 0.6));
+}
+
+.accent-dot::after {
+  content: '';
+  position: absolute;
+  inset: 2.5px;
+  background: var(--bg);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  animation: star-rotate 5s linear infinite;
+}
+
+@keyframes star-rotate {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .noise-layer {
@@ -163,8 +189,7 @@ img {
 
 .glass-panel {
   border: 1px solid rgba(255, 255, 255, 0.14);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.025));
-  backdrop-filter: blur(18px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.04));
   box-shadow: 0 26px 80px rgba(0, 0, 0, 0.42);
 }
 

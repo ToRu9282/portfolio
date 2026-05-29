@@ -12,20 +12,20 @@ export function BubbleText({ text, className = "" }: BubbleTextProps) {
     <span onMouseLeave={() => setHoveredIndex(null)} className={className} aria-label={text}>
       {text.split("").map((char, index) => {
         const distance = hoveredIndex === null ? null : Math.abs(hoveredIndex - index);
-        const weight =
-          distance === 0
-            ? "font-black text-white"
-            : distance === 1
-              ? "font-bold text-white/[0.9]"
-              : distance === 2
-                ? "font-semibold text-white/[0.75]"
-                : "font-normal";
 
         return (
           <span
             key={`${char}-${index}`}
             onMouseEnter={() => setHoveredIndex(index)}
-            className={`inline-block transition-all duration-300 ease-out ${weight}`}
+            className={`inline-block cursor-default transition-all duration-300 ease-out ${
+              distance === 0
+                ? "scale-110 brightness-[1.8] drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]"
+                : distance === 1
+                  ? "scale-105 brightness-[1.3]"
+                  : distance === 2
+                    ? "scale-[1.02] brightness-[1.1]"
+                    : ""
+            }`}
             aria-hidden
           >
             {char === " " ? "\u00A0" : char}

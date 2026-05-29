@@ -1,12 +1,15 @@
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { faq, pricing, problems, processSteps, services } from "../../data/content";
 import { links } from "../../config/links";
 import { PrimaryLink } from "../../components/Buttons";
+import { BubbleText } from "../../components/BubbleText";
 import { Reveal } from "../../components/Reveal";
 import { SectionIntro } from "../../components/SectionIntro";
 
 export function ServicesSection() {
   return (
-    <section id="services" className="relative overflow-hidden px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
+    <section id="services" className="relative px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
       <div className="noise-layer" />
       <div className="mx-auto max-w-[1180px]">
         <SectionIntro
@@ -14,7 +17,8 @@ export function ServicesSection() {
           label="Что я делаю"
           title={
             <>
-              Сайты, боты и сервисы для заявок<span className="accent-dot" />
+              <BubbleText text="Сайты, боты и сервисы для заявок" />
+              <span className="accent-dot" />
             </>
           }
           text="Не просто верстаю красиво. Помогаю упаковать продукт, собрать структуру, подключить формы, Telegram и понятный сценарий до заявки."
@@ -38,15 +42,18 @@ export function ServicesSection() {
 
 export function ProblemSection() {
   return (
-    <section className="relative overflow-hidden px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
-      <div className="absolute left-[-12%] top-[8%] h-72 w-72 rounded-full bg-flame/10 blur-[110px]" />
+    <section className="relative px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute left-[-12%] top-[8%] h-72 w-72 rounded-full bg-flame/10 blur-[110px]" />
+      </div>
       <div className="mx-auto max-w-[1180px]">
         <SectionIntro
           number="03"
           label="Почему сайт не продает"
           title={
             <>
-              Красивого экрана мало<span className="accent-dot" />
+              <BubbleText text="Красивого экрана мало" />
+              <span className="accent-dot" />
             </>
           }
           text="У сайта должен быть маршрут: внимание, доверие, интерес и понятное действие. Иначе заявки просто не доходят."
@@ -76,14 +83,15 @@ export function ProblemSection() {
 
 export function ProcessSection() {
   return (
-    <section id="process" className="relative overflow-hidden px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
+    <section id="process" className="relative px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
       <div className="mx-auto max-w-[1180px]">
         <SectionIntro
           number="05"
           label="Как проходит работа"
           title={
             <>
-              От идеи до рабочей заявки<span className="accent-dot" />
+              <BubbleText text="От идеи до рабочей заявки" />
+              <span className="accent-dot" />
             </>
           }
           text="Сначала разбираю задачу, потом собираю структуру, делаю визуал, разрабатываю и проверяю в реальном сценарии клиента."
@@ -110,15 +118,18 @@ export function ProcessSection() {
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="relative overflow-hidden px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
-      <div className="absolute right-[-12%] top-0 h-80 w-80 rounded-full bg-white/10 blur-[120px]" />
+    <section id="pricing" className="relative px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute right-[-12%] top-0 h-80 w-80 rounded-full bg-white/10 blur-[120px]" />
+      </div>
       <div className="mx-auto max-w-[1180px]">
         <SectionIntro
           number="06"
           label="Форматы работы"
           title={
             <>
-              Можно начать компактно или собрать систему<span className="accent-dot" />
+              <BubbleText text="Можно начать компактно или собрать систему" />
+              <span className="accent-dot" />
             </>
           }
           text="Формат зависит от задачи: быстрый лендинг, сайт под ключ или связка сайта, бота и автоматизации."
@@ -131,7 +142,7 @@ export function PricingSection() {
                 <p className="chrome-text text-[0.66rem] text-flame">{tariff.duration}</p>
                 <h3 className="mt-5 font-['Stolzl'] text-2xl uppercase leading-tight text-white">{tariff.title}</h3>
                 <p className="mt-4 text-sm leading-7 text-white/[0.58]">{tariff.note}</p>
-                <p className="display-text metal-text mt-7 text-[clamp(2.4rem,4vw,3.8rem)]">{tariff.price}</p>
+                <p className="display-text metal-text mt-7 text-[clamp(2.4rem,4vw,3.8rem)] leading-[1.2] py-1">{tariff.price}</p>
                 <ul className="mt-7 grid gap-3">
                   {tariff.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3 text-sm leading-6 text-white/[0.68]">
@@ -153,8 +164,10 @@ export function PricingSection() {
 }
 
 export function FaqSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   return (
-    <section id="faq" className="relative overflow-hidden px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
+    <section id="faq" className="relative px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
       <div className="mx-auto max-w-[980px]">
         <SectionIntro
           number="07"
@@ -162,7 +175,8 @@ export function FaqSection() {
           align="center"
           title={
             <>
-              Частые вопросы<span className="accent-dot" />
+              <BubbleText text="Частые вопросы" />
+              <span className="accent-dot" />
             </>
           }
         />
@@ -170,15 +184,41 @@ export function FaqSection() {
         <div className="mt-9 grid gap-3">
           {faq.map((item, index) => (
             <Reveal key={item.question} delay={index * 0.035}>
-              <details className="group rounded-[22px] border border-white/[0.12] bg-white/[0.03] p-5 open:border-flame/[0.35] open:bg-white/[0.05]">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-['Stolzl'] text-base uppercase leading-tight text-white">
-                  {item.question}
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-white/[0.15] text-flame transition group-open:rotate-45">
+              <div
+                className={`cursor-pointer rounded-[22px] border p-5 transition-colors duration-300 ${
+                  openIndex === index
+                    ? "border-flame/[0.35] bg-white/[0.05]"
+                    : "border-white/[0.12] bg-white/[0.03]"
+                }`}
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <h3 className="font-['Stolzl'] text-base uppercase leading-tight text-white">
+                    {item.question}
+                  </h3>
+                  <motion.span
+                    animate={{ rotate: openIndex === index ? 45 : 0 }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                    className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-white/[0.15] text-flame"
+                  >
                     +
-                  </span>
-                </summary>
-                <p className="mt-4 max-w-[760px] text-sm leading-7 text-white/[0.62]">{item.answer}</p>
-              </details>
+                  </motion.span>
+                </div>
+                <AnimatePresence initial={false}>
+                  {openIndex === index && (
+                    <motion.div
+                      key="answer"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <p className="mt-4 max-w-[760px] text-sm leading-7 text-white/[0.62]">{item.answer}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </Reveal>
           ))}
         </div>

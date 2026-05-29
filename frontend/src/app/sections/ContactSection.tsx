@@ -9,7 +9,7 @@ import { BubbleText } from "../../components/BubbleText";
 
 export function ContactSection() {
   return (
-    <section id="contact" className="relative overflow-hidden px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
+    <section id="contact" className="relative px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
       <div className="grid-layer absolute inset-0 opacity-18" />
       <div className="noise-layer" />
       <div className="absolute left-[14%] top-[16%] h-80 w-80 rounded-full bg-flame/15 blur-[120px]" />

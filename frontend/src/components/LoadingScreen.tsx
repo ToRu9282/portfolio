@@ -60,7 +60,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
           <AnimatePresence mode="wait">
             <motion.p
               key={words[wordIndex]}
-              className="display-text metal-text text-[clamp(3rem,9vw,8rem)]"
+              className="display-text metal-text text-[clamp(3rem,9vw,8rem)] leading-[1.1]"
               initial={{ y: 60, opacity: 0, filter: "blur(12px)" }}
               animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
               exit={{ y: -60, opacity: 0, filter: "blur(12px)" }}

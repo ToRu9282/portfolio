@@ -23,8 +23,8 @@ import {
 } from "lucide-react";
 
 export const navItems = [
-  { label: "Работы", href: "#work" },
   { label: "Услуги", href: "#services" },
+  { label: "Работы", href: "#work" },
   { label: "Процесс", href: "#process" },
   { label: "Цена", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
