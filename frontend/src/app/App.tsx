@@ -18,7 +18,7 @@ export function App() {
   return (
     <>
       <AnimatePresence>{isLoading ? <LoadingScreen onComplete={completeLoading} /> : null}</AnimatePresence>
-      <CustomCursor />
+      {!isLoading && <CustomCursor />}
       <motion.div
         className="fixed left-0 right-0 top-0 z-[9997] h-[3px] origin-left bg-flame shadow-ember"
         style={{ scaleX: progress }}

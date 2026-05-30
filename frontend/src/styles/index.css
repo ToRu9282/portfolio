@@ -1,4 +1,12 @@
 @font-face {
+  font-family: "Montserrat Thin";
+  src: url("/assets/fonts/Montserrat-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Panton";
   src: url("/assets/fonts/Panton-ExtraBlack.otf") format("opentype");
   font-weight: 900;
@@ -66,6 +74,21 @@ body,
   color: var(--text);
   font-family: "Evolve Sans", Inter, Arial, sans-serif;
   overflow-x: clip;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+p {
+  overflow-wrap: break-word;
+}
+
+h1, h2, h3, h4, h5, h6,
+.display-text,
+.metal-text {
+  -webkit-hyphens: none;
+  hyphens: none;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 body {

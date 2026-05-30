@@ -17,18 +17,18 @@ export function BubbleText({ text, className = "" }: BubbleTextProps) {
           <span
             key={`${char}-${index}`}
             onMouseEnter={() => setHoveredIndex(index)}
-            className={`inline-block cursor-default transition-all duration-300 ease-out ${
+            className={`transition-all duration-300 ease-out ${
               distance === 0
-                ? "scale-110 brightness-[1.8] drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]"
+                ? "brightness-[2] drop-shadow-[0_0_10px_rgba(255,255,255,0.35)]"
                 : distance === 1
-                  ? "scale-105 brightness-[1.3]"
+                  ? "brightness-[1.4]"
                   : distance === 2
-                    ? "scale-[1.02] brightness-[1.1]"
+                    ? "brightness-[1.1]"
                     : ""
             }`}
             aria-hidden
           >
-            {char === " " ? "\u00A0" : char}
+            {char}
           </span>
         );
       })}
