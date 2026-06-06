@@ -17,15 +17,14 @@ export function ContactSection() {
 
       <div className="relative z-10 mx-auto max-w-[1180px]">
         <SectionIntro
-          number="08"
+          number="09"
           label="Контакты"
           title={
             <>
-              <BubbleText text="Расскажи, что нужно сделать" />
-              <span className="accent-dot" />
+              <BubbleText text="Получить расчет проекта" />
             </>
           }
-          text="Я предложу формат: лендинг, сайт, Telegram-бот или связку под ключ. Можно написать сразу в Telegram или оставить заявку в форме."
+          text="Напиши задачу: я предложу формат, сроки и понятный следующий шаг."
         />
 
         <div className="mt-9 grid gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">

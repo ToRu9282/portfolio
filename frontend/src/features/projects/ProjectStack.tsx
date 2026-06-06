@@ -60,15 +60,14 @@ export function ProjectStack() {
       <div className="relative z-10 px-5 pt-16 sm:px-8 sm:pt-20 lg:px-12">
         <div className="mx-auto max-w-[1180px]">
           <SectionIntro
-            number="04"
+            number="05"
             label="Портфолио"
               title={
                 <>
-                  <BubbleText text="Работы можно открыть прямо здесь" />
-                  <span className="accent-dot" />
+                  <BubbleText text="Работы с живым превью" />
                 </>
               }
-            text="Кликните по проекту или по кнопке демо: откроется полноэкранный просмотр со скрином, мобильным видом, стеком и ссылкой на сайт."
+            text="Открой проект, посмотри desktop/mobile и перейди на реальный сайт."
           />
         </div>
       </div>
@@ -145,7 +144,7 @@ function ProjectCard({
   return (
     <div data-project-card>
       <button type="button" onClick={onOpen} className="group w-full text-left">
-        <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0a0a] shadow-panel transition duration-500 hover:border-white/[0.16]">
+        <div className="project-card-shell relative overflow-hidden rounded-2xl border shadow-panel transition duration-500 hover:border-white/[0.16]">
           <div
             ref={imgRef}
             className="relative h-[220px] overflow-hidden sm:h-[280px]"
@@ -159,7 +158,7 @@ function ProjectCard({
                 if (project.fallbackPreview) event.currentTarget.src = project.fallbackPreview;
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/20 to-transparent" />
+            <div className="project-card-gradient absolute inset-0" />
           </div>
           <div className="p-5 sm:p-6">
             <div className="flex items-start justify-between gap-3">
@@ -238,7 +237,7 @@ function ProjectPreviewModal({ project, onClose }: { project: PortfolioProject |
       {project && (
         <motion.div
           key={project.slug}
-          className="fixed inset-0 z-[10000] overflow-y-auto bg-black/[0.82] backdrop-blur-xl p-4"
+          className="project-modal-backdrop fixed inset-0 z-[10000] overflow-y-auto backdrop-blur-xl p-4"
           role="dialog"
           aria-modal="true"
           aria-label={`Демо проекта ${project.title}`}
@@ -249,14 +248,14 @@ function ProjectPreviewModal({ project, onClose }: { project: PortfolioProject |
             if (event.target === event.currentTarget) onClose();
           }}
         >
-          <div className="mx-auto min-h-full max-w-[1280px]">
+          <div className="mx-auto flex min-h-full max-w-[1280px] items-stretch">
             <motion.div
               initial={{ opacity: 0, y: 40, scale: 0.94 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 80, scale: 0.88 }}
               transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
-              className="grid min-h-dvh gap-0 rounded-2xl border border-white/[0.14] bg-[#080808] p-0 shadow-panel sm:min-h-[calc(100dvh-2rem)] sm:rounded-[28px] lg:rounded-[36px] xl:grid-cols-[minmax(0,1fr)_330px] xl:gap-4 xl:p-6">
-            <div className="relative flex min-h-0 flex-col overflow-hidden rounded-none border-0 bg-black sm:rounded-2xl sm:border sm:border-white/[0.12] lg:rounded-[30px]">
+              className="project-modal-shell grid h-[calc(100dvh-2rem)] max-h-[calc(100dvh-2rem)] w-full grid-rows-[minmax(0,1fr)_auto] gap-0 rounded-2xl border p-0 shadow-panel sm:rounded-[28px] lg:rounded-[36px] xl:grid-cols-[minmax(0,1fr)_330px] xl:grid-rows-1 xl:gap-4 xl:p-6">
+            <div className="relative flex h-full min-h-0 flex-col overflow-hidden rounded-none border-0 bg-black sm:rounded-2xl sm:border sm:border-white/[0.12] lg:rounded-[30px]">
               <div className="sticky top-0 z-20 flex items-center justify-between border-b border-white/[0.1] bg-black/[0.76] px-2 py-1.5 backdrop-blur sm:px-3 sm:py-2.5 lg:px-4 lg:py-3">
                 <div className="min-w-0">
                   <p className="chrome-text text-[0.5rem] text-flame sm:text-[0.55rem] lg:text-[0.62rem]">{project.type}</p>
@@ -290,11 +289,11 @@ function ProjectPreviewModal({ project, onClose }: { project: PortfolioProject |
                 </div>
               </div>
 
-              <div className="relative min-h-0 flex-1 overflow-hidden xl:max-h-[80svh]">
+              <div className="relative min-h-0 flex-1 overflow-hidden">
                 {liveMode && !iframeError ? (
                   <>
                     {!iframeLoaded && (
-                      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-[#080808] sm:gap-4">
+                      <div className="project-modal-shell absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 sm:gap-4">
                         <div className="h-6 w-6 animate-spin rounded-full border-2 border-flame/30 border-t-flame sm:h-8 sm:w-8" />
                         <span className="chrome-text text-[0.5rem] tracking-[0.15em] text-white/[0.35] sm:text-[0.55rem]">
                           загрузка демо...

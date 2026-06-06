@@ -164,10 +164,8 @@ export function ContactForm() {
       {message ? (
         <div
           role="status"
-          className={`rounded-2xl border px-4 py-3 text-sm ${
-            status === "error"
-              ? "border-red-400/30 bg-red-500/10 text-red-100"
-              : "border-green-400/30 bg-green-500/10 text-green-100"
+          className={`status-message rounded-2xl border px-4 py-3 text-sm ${
+            status === "error" ? "status-message-error" : "status-message-success"
           }`}
         >
           {message}

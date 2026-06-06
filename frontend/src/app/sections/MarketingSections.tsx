@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { faq, pricing, problems, processSteps, services } from "../../data/content";
+import { aboutPrinciples, aboutStats, faq, pricing, problems, processSteps, services } from "../../data/content";
 import { links } from "../../config/links";
 import { PrimaryLink } from "../../components/Buttons";
 import { BubbleText } from "../../components/BubbleText";
@@ -17,20 +17,78 @@ export function ServicesSection() {
           label="Что я делаю"
           title={
             <>
-              <BubbleText text="Сайты, боты и сервисы для заявок" />
-              <span className="accent-dot" />
+              <BubbleText text="Разработка под заявки" />
             </>
           }
-          text="Не просто верстаю красиво. Помогаю упаковать продукт, собрать структуру, подключить формы, Telegram и понятный сценарий до заявки."
+          text="Упаковка, дизайн, разработка и отправка лидов в Telegram."
         />
 
-        <div className="mt-9 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
             <Reveal key={service.title} delay={index * 0.045}>
-              <article className="service-card group min-h-[220px] rounded-[24px] border border-white/[0.12] bg-white/[0.035] p-5 backdrop-blur transition hover:-translate-y-1 hover:border-flame/[0.45] hover:bg-white/[0.06] sm:p-6">
-                <service.icon className="h-7 w-7 text-flame" strokeWidth={1.35} />
-                <h3 className="mt-7 font-['Stolzl'] text-xl uppercase leading-tight text-white">{service.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-white/[0.6]">{service.text}</p>
+              <article className="service-card compact-card group min-h-[150px] rounded-[20px] border border-white/[0.12] bg-white/[0.035] p-4 backdrop-blur transition hover:-translate-y-1 hover:border-flame/[0.45] hover:bg-white/[0.06] sm:min-h-[180px] sm:rounded-[24px] sm:p-5 lg:min-h-[205px] lg:p-6">
+                <service.icon className="h-6 w-6 text-flame sm:h-7 sm:w-7" strokeWidth={1.35} />
+                <h3 className="mt-5 font-['Stolzl'] text-lg uppercase leading-tight text-white sm:mt-6 sm:text-xl">{service.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-white/[0.6] sm:mt-4 sm:leading-7">{service.text}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function AboutSection() {
+  return (
+    <section id="about" className="relative overflow-hidden px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(255,61,18,0.13),transparent_28%),linear-gradient(180deg,transparent,rgba(255,255,255,0.025),transparent)]" />
+      <div className="noise-layer" />
+      <div className="relative z-10 mx-auto max-w-[1180px]">
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <SectionIntro
+            number="03"
+            label="Обо мне"
+            title={
+              <>
+                <BubbleText text="Сайты, которые помогают получать заявки" />
+              </>
+            }
+            text="Не просто рисую красивый дизайн, а собираю готовый инструмент для продаж: продумываю структуру, запускаю сайт и подключаю прием обращений."
+          />
+
+          <Reveal delay={0.08}>
+            <div className="about-note rounded-[28px] border border-flame/[0.28] bg-flame/[0.08] p-5 sm:p-6">
+              <p className="chrome-text text-[0.66rem] text-flame">Фокус работы</p>
+              <p className="mt-4 text-lg leading-8 text-white sm:text-xl">
+                Сайт должен быстро объяснять ценность, вызывать доверие и вести клиента к понятному действию.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="mt-9 grid gap-3 lg:grid-cols-3">
+          {aboutStats.map((stat, index) => (
+            <Reveal key={stat.label} delay={index * 0.055}>
+              <article className="trust-card group min-h-[260px] rounded-[26px] border border-white/[0.12] bg-black/[0.3] p-5 transition hover:-translate-y-1 hover:border-flame/[0.45] hover:bg-white/[0.045] sm:p-6">
+                <div className="flex items-start justify-between gap-4">
+                  <stat.icon className="h-7 w-7 text-flame" strokeWidth={1.35} />
+                  <span className="chrome-text text-[0.62rem] text-white/[0.28]">{String(index + 1).padStart(2, "0")}</span>
+                </div>
+                <p className="metal-text mt-7 font-['Panton'] text-[clamp(2.7rem,6vw,4.6rem)] font-black leading-none">{stat.value}</p>
+                <h3 className="mt-4 font-['Stolzl'] text-lg uppercase leading-tight text-white">{stat.label}</h3>
+                <p className="mt-4 text-sm leading-7 text-white/[0.62]">{stat.text}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          {aboutPrinciples.map((item, index) => (
+            <Reveal key={item.title} delay={0.14 + index * 0.045}>
+              <article className="rounded-[22px] border border-white/[0.1] bg-white/[0.035] p-5 backdrop-blur">
+                <h3 className="font-['Stolzl'] text-base uppercase leading-tight text-white">{item.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-white/[0.58]">{item.text}</p>
               </article>
             </Reveal>
           ))}
@@ -48,15 +106,14 @@ export function ProblemSection() {
       </div>
       <div className="mx-auto max-w-[1180px]">
         <SectionIntro
-          number="03"
+          number="04"
           label="Почему сайт не продает"
           title={
             <>
-              <BubbleText text="Красивого экрана мало" />
-              <span className="accent-dot" />
+              <BubbleText text="Сайт должен вести к действию" />
             </>
           }
-          text="У сайта должен быть маршрут: внимание, доверие, интерес и понятное действие. Иначе заявки просто не доходят."
+          text="Меньше лишнего текста. Больше ясности, доверия и кликов."
         />
 
         <div className="mt-9 grid gap-3 md:grid-cols-4">
@@ -73,7 +130,7 @@ export function ProblemSection() {
 
         <Reveal delay={0.12}>
           <div className="mt-6 rounded-[24px] border border-flame/[0.28] bg-flame/[0.08] p-5 text-base leading-8 text-white sm:p-6 sm:text-lg">
-            Я собираю сайт как маршрут: <span className="text-flame">внимание → доверие → интерес → заявка</span>.
+            Маршрут страницы: <span className="text-flame">оффер → доверие → действие → заявка</span>.
           </div>
         </Reveal>
       </div>
@@ -86,27 +143,26 @@ export function ProcessSection() {
     <section id="process" className="relative px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
       <div className="mx-auto max-w-[1180px]">
         <SectionIntro
-          number="05"
+          number="06"
           label="Как проходит работа"
           title={
             <>
-              <BubbleText text="От идеи до рабочей заявки" />
-              <span className="accent-dot" />
+              <BubbleText text="Быстрый путь к запуску" />
             </>
           }
-          text="Сначала разбираю задачу, потом собираю структуру, делаю визуал, разрабатываю и проверяю в реальном сценарии клиента."
+          text="Без долгих созвонов и сложного ТЗ: задача, структура, дизайн, разработка, запуск."
         />
 
-        <div className="mt-9 grid gap-3 lg:grid-cols-5">
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {processSteps.map((step, index) => (
             <Reveal key={step.title} delay={index * 0.055}>
-              <article className="group min-h-[300px] rounded-[24px] border border-white/[0.12] bg-black/[0.28] p-5 transition hover:border-flame/[0.42] hover:bg-white/[0.04]">
+              <article className="process-card compact-card group min-h-[165px] rounded-[20px] border border-white/[0.12] bg-black/[0.28] p-4 transition hover:border-flame/[0.42] hover:bg-white/[0.04] sm:min-h-[210px] sm:rounded-[24px] sm:p-5 lg:min-h-[255px]">
                 <div className="flex items-center justify-between gap-4">
                   <step.icon className="h-6 w-6 text-flame" strokeWidth={1.35} />
                   <span className="chrome-text text-[0.66rem] text-white/[0.28]">{String(index + 1).padStart(2, "0")}</span>
                 </div>
-                <h3 className="mt-7 font-['Stolzl'] text-base uppercase leading-tight text-white">{step.title}</h3>
-                <p className="mt-4 text-sm leading-6 text-white/[0.58]">{step.text}</p>
+                <h3 className="mt-5 font-['Stolzl'] text-base uppercase leading-tight text-white sm:mt-6">{step.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-white/[0.58] sm:mt-4">{step.text}</p>
               </article>
             </Reveal>
           ))}
@@ -124,15 +180,14 @@ export function PricingSection() {
       </div>
       <div className="mx-auto max-w-[1180px]">
         <SectionIntro
-          number="06"
+          number="07"
           label="Форматы работы"
           title={
             <>
-              <BubbleText text="Можно начать компактно или собрать систему" />
-              <span className="accent-dot" />
+              <BubbleText text="Выбери формат запуска" />
             </>
           }
-          text="Формат зависит от задачи: быстрый лендинг, сайт под ключ или связка сайта, бота и автоматизации."
+          text="От компактного лендинга до сайта с ботом и автоматизацией."
         />
 
         <div className="mt-9 grid gap-4 lg:grid-cols-3">
@@ -170,13 +225,12 @@ export function FaqSection() {
     <section id="faq" className="relative px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
       <div className="mx-auto max-w-[980px]">
         <SectionIntro
-          number="07"
+          number="08"
           label="FAQ"
           align="center"
           title={
             <>
               <BubbleText text="Частые вопросы" />
-              <span className="accent-dot" />
             </>
           }
         />

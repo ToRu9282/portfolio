@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CircleDot, Menu, X } from "lucide-react";
 import { links } from "../config/links";
 import { navItems } from "../data/content";
+import { ThemeToggle } from "./ThemeToggle";
+import type { ThemeMode } from "../lib/theme";
 
-export function Header() {
+type HeaderProps = {
+  theme: ThemeMode;
+  onThemeToggle: (event: MouseEvent<HTMLButtonElement>) => void;
+};
+
+export function Header({ theme, onThemeToggle }: HeaderProps) {
   const [open, setOpen] = useState(false);
 
   const close = () => setOpen(false);
@@ -16,7 +23,7 @@ export function Header() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.25, duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
     >
-      <nav className="mx-auto flex max-w-[1180px] items-center justify-between rounded-full border border-white/10 bg-black/[0.56] px-3 py-2 shadow-panel backdrop-blur-xl sm:px-5">
+      <nav className="site-header-shell mx-auto flex max-w-[1180px] items-center justify-between gap-2 rounded-full border px-3 py-2 shadow-panel backdrop-blur-xl sm:px-5">
         <a
           href="#top"
           className="group inline-flex items-center gap-2 rounded-full border border-white/[0.15] px-3 py-2 text-sm font-bold text-white transition hover:border-flame/60 sm:px-5"
@@ -51,21 +58,25 @@ export function Header() {
           Обсудить проект
         </a>
 
-        <button
-          type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.15] text-white lg:hidden"
-          aria-label={open ? "Закрыть меню" : "Открыть меню"}
-          aria-expanded={open}
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? <X size={18} /> : <Menu size={18} />}
-        </button>
+        <div className="flex items-center gap-2">
+          <ThemeToggle theme={theme} onToggle={onThemeToggle} />
+
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.15] text-white lg:hidden"
+            aria-label={open ? "Закрыть меню" : "Открыть меню"}
+            aria-expanded={open}
+            onClick={() => setOpen((value) => !value)}
+          >
+            {open ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
         {open ? (
           <motion.div
-            className="mx-auto mt-2 max-w-[1180px] rounded-[22px] border border-white/[0.12] bg-black/[0.78] p-3 shadow-panel backdrop-blur-xl lg:hidden"
+            className="site-header-shell mx-auto mt-2 max-w-[1180px] rounded-[22px] border p-3 shadow-panel backdrop-blur-xl lg:hidden"
             initial={{ opacity: 0, y: -12, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -12, scale: 0.98 }}

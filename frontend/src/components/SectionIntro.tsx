@@ -14,9 +14,9 @@ export function SectionIntro({ number, label, title, text, align = "left" }: Sec
   return (
     <Reveal>
       <SectionLabel number={number} label={label} align={align} />
-      <div className={`mt-7 ${align === "center" ? "mx-auto text-center" : ""} max-w-[760px]`}>
-        <h2 className="display-text metal-text text-[clamp(2.25rem,5.4vw,5.4rem)] leading-[1.15]">{title}</h2>
-        {text ? <p className="mt-5 max-w-[680px] text-base leading-8 text-white/[0.64] sm:text-lg">{text}</p> : null}
+      <div className={`mt-6 ${align === "center" ? "mx-auto text-center" : ""} max-w-[700px]`}>
+        <h2 className="section-title display-text metal-text text-[clamp(1.7rem,3.2vw,3.25rem)] leading-[1.1]">{title}</h2>
+        {text ? <p className="mt-4 max-w-[620px] text-[0.98rem] leading-7 text-white/[0.64] sm:text-base sm:leading-8">{text}</p> : null}
       </div>
     </Reveal>
   );

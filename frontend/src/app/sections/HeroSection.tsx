@@ -3,7 +3,6 @@ import { ArrowRight } from "lucide-react";
 import { BubbleText } from "../../components/BubbleText";
 import { Magnetic } from "../../components/Magnetic";
 import { PrimaryLink } from "../../components/Buttons";
-import { links } from "../../config/links";
 import { heroBadges, serviceTicker } from "../../data/content";
 
 export function HeroSection() {
@@ -13,7 +12,7 @@ export function HeroSection() {
   const titleY = useTransform(scrollYProgress, [0, 0.18], ["0%", "-8%"]);
 
   return (
-    <section id="top" className="relative min-h-svh overflow-hidden px-3 pb-3 pt-20 sm:px-6 sm:pb-6 sm:pt-24">
+    <section id="top" className="hero-section relative min-h-svh overflow-hidden px-3 pb-3 pt-20 sm:px-6 sm:pb-6 sm:pt-24">
       <div className="grid-layer absolute inset-0 opacity-35" />
       <div className="noise-layer" />
       <div className="scan-line" />
@@ -28,24 +27,27 @@ export function HeroSection() {
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="hud-frame relative mx-auto min-h-[calc(100svh-6rem)] max-w-[1360px] overflow-hidden rounded-[clamp(18px,2.2vw,34px)] bg-black/30">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_42%,rgba(255,61,18,0.16),transparent_27%),linear-gradient(180deg,rgba(255,255,255,0.025),transparent_44%)]" />
+      <div className="hud-frame hero-hud-frame relative mx-auto min-h-[calc(100svh-6rem)] max-w-[1360px] overflow-hidden rounded-[clamp(18px,2.2vw,34px)]">
+        <div className="hero-frame-wash absolute inset-0" />
         <HudRails />
 
         <motion.div
           style={{ y: ringY }}
-          className="orbital-ring left-[52%] top-[21%] hidden aspect-square w-[min(36vw,470px)] -translate-x-1/2 lg:block"
+          className="orbital-ring z-[1] left-[54%] top-[19%] hidden aspect-square w-[min(36vw,470px)] -translate-x-1/2 lg:block"
         />
 
         <motion.div
           style={{ y: imageY }}
-          className="pointer-events-none absolute bottom-0 right-[-8%] z-10 w-[min(50vw,660px)] max-w-none overflow-hidden opacity-78 sm:right-[-5%] md:right-[1%]"
+          className="hero-portrait-frame pointer-events-none absolute bottom-[-9%] right-[-5%] z-10 w-[min(66vw,315px)] max-w-none overflow-visible opacity-90 sm:bottom-[-11%] sm:right-[-8%] sm:w-[min(58vw,430px)] md:right-[-6%] lg:bottom-[-7%] lg:right-[-4%] lg:w-[min(40vw,590px)] lg:opacity-100 xl:right-[1%]"
         >
+          <div className="hero-portrait-halo" />
+          <div className="hero-portrait-frontlight" />
+          <div className="hero-portrait-rim" />
           <Magnetic strength={6} padding={180}>
             <img
-              src="/assets/hero-statue.png"
+              src="/assets/hero-tamerlan-cutout-clean.png"
               alt=""
-              className="h-auto w-[calc(100%_+_8px)] max-w-none select-none object-contain -ml-[8px] [mask-image:linear-gradient(180deg,black_62%,transparent_96%)]"
+              className="hero-portrait-image h-auto w-[calc(100%_+_8px)] max-w-none select-none object-contain -ml-[8px]"
               draggable={false}
             />
           </Magnetic>
@@ -53,10 +55,10 @@ export function HeroSection() {
 
         <div className="smoke z-20" />
 
-        <div className="relative z-30 flex min-h-[calc(100svh-6rem)] flex-col justify-between px-5 pb-4 pt-8 sm:px-10 sm:pb-6 md:px-14 lg:px-20">
+        <div className="hero-content-shell relative z-30 flex min-h-[calc(100svh-6rem)] flex-col justify-between px-5 pb-4 pt-8 sm:px-10 sm:pb-6 md:px-14 lg:px-20">
           <div className="grid gap-8 lg:grid-cols-[minmax(0,0.92fr)_360px]">
             <motion.div
-              className="max-w-[700px] pt-[2svh] sm:pt-[4svh] xl:pt-[5svh]"
+              className="hero-copy max-w-[700px] pt-[2svh] sm:pt-[4svh] xl:pt-[5svh]"
               style={{ y: titleY }}
               initial={{ opacity: 0, y: 34, filter: "blur(12px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -66,27 +68,24 @@ export function HeroSection() {
                 Тамерлан / сайты, боты, веб-сервисы
               </p>
               <h1 className="metal-text max-w-[720px] font-['Panton'] text-[clamp(2.1rem,4.55vw,4.85rem)] font-black leading-[0.98] tracking-normal">
-                <BubbleText text="Создаю сайты, лендинги и Telegram-ботов, которые выглядят сильно и приводят заявки" />
-                <span className="accent-dot" />
+                <BubbleText text="Сайт, который приводит заявки" />
               </h1>
               <p className="mt-5 max-w-[620px] text-base leading-7 text-white/[0.72] sm:text-lg sm:leading-8">
-                Разрабатываю визуально сильные сайты, веб-сервисы и автоматизации для бизнеса: от первого экрана до формы заявки, Telegram-уведомлений и админки.
+                Лендинги, сайты, боты и сервисы под ключ: структура, дизайн, форма и Telegram-уведомления.
               </p>
 
-              <div className="mt-7 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-                <PrimaryLink href="#work">Посмотреть работы</PrimaryLink>
+              <div className="hero-actions mt-7 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+                <PrimaryLink href="#contact">Получить расчет</PrimaryLink>
                 <a
-                  href={links.telegramUrl}
-                  target="_blank"
-                  rel="noreferrer"
+                  href="#work"
                   className="chrome-text group inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-white/[0.14] px-6 py-3 text-[0.72rem] text-white transition hover:border-white/[0.32] hover:bg-white/[0.08]"
                 >
-                  Обсудить проект
+                  Смотреть работы
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </a>
               </div>
 
-              <div className="mt-6 flex max-w-[680px] flex-wrap gap-2">
+              <div className="hero-badges mt-6 flex max-w-[680px] flex-wrap gap-2">
                 {heroBadges.map((badge) => (
                   <span key={badge} className="rounded-full border border-white/[0.12] bg-white/[0.045] px-3 py-2 text-sm text-white/[0.7] backdrop-blur">
                     {badge}
@@ -98,7 +97,7 @@ export function HeroSection() {
 
           </div>
 
-          <div className="relative z-40 -mx-5 mt-10 overflow-hidden border-t border-white/[0.12] bg-black/[0.34] py-4 sm:-mx-10 md:-mx-14 lg:-mx-20">
+          <div className="hero-marquee relative z-40 -mx-5 mt-10 overflow-hidden border-t border-white/[0.12] bg-black/[0.34] py-4 sm:-mx-10 md:-mx-14 lg:-mx-20">
             <div className="marquee-track flex items-center gap-7 whitespace-nowrap">
               {[...serviceTicker, ...serviceTicker, ...serviceTicker].map((item, index) => (
                 <span key={`${item}-${index}`} className="chrome-text inline-flex items-center gap-7 text-sm text-white/[0.68]">

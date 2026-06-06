@@ -11,7 +11,7 @@ export function SectionLabel({ number, label, align = "left" }: SectionLabelProp
         align === "center" ? "justify-center" : "justify-start"
       }`}
     >
-      <span className="display-text text-[clamp(2.5rem,6vw,5.7rem)] leading-none text-white/20">
+      <span className="display-text text-[clamp(2rem,4.4vw,4.4rem)] leading-none text-white/20">
         {number}
       </span>
       <span className="h-1.5 w-1.5 rounded-full bg-flame shadow-ember" />

@@ -10,17 +10,19 @@ const config: Config = {
         mono: ["Laqonic", "ui-monospace", "SFMono-Regular", "monospace"]
       },
       colors: {
-        void: "#060606",
-        ink: "#0C0C0C",
-        line: "rgba(255,255,255,0.14)",
-        text: "#F2F2F2",
-        muted: "#9A9A9A",
-        flame: "#FF3D12",
-        ember: "#BE2F10"
+        white: "rgb(var(--theme-white) / <alpha-value>)",
+        black: "rgb(var(--theme-black) / <alpha-value>)",
+        void: "rgb(var(--theme-void) / <alpha-value>)",
+        ink: "rgb(var(--theme-ink) / <alpha-value>)",
+        line: "rgb(var(--theme-line) / <alpha-value>)",
+        text: "rgb(var(--theme-text) / <alpha-value>)",
+        muted: "rgb(var(--theme-muted) / <alpha-value>)",
+        flame: "rgb(var(--theme-flame) / <alpha-value>)",
+        ember: "rgb(var(--theme-ember) / <alpha-value>)"
       },
       boxShadow: {
-        ember: "0 0 26px rgba(255, 61, 18, 0.35)",
-        panel: "0 28px 90px rgba(0,0,0,0.52)"
+        ember: "0 0 26px var(--shadow-ember)",
+        panel: "0 28px 90px var(--shadow-panel)"
       }
     }
   },

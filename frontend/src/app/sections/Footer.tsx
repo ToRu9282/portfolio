@@ -73,7 +73,7 @@ export function Footer() {
           {[...serviceTicker, ...serviceTicker, ...serviceTicker, ...serviceTicker].map((item, index) => (
             <span key={`${item}-${index}`} className="flex items-center gap-8 px-4">
               {item}
-              <span className="text-flame">✦</span>
+              <span className="h-1.5 w-1.5 rounded-full bg-flame shadow-ember" />
             </span>
           ))}
         </div>
@@ -82,10 +82,10 @@ export function Footer() {
       <div className="relative z-20 mx-auto flex min-h-[72svh] max-w-[980px] flex-col items-center justify-center pt-20 text-center">
         <p className="chrome-text text-xs text-white/[0.52]">Финальный шаг</p>
         <h2 ref={titleRef} className="footer-text-glow mt-6 max-w-[860px] font-['Panton'] text-[clamp(2rem,5.4vw,5.8rem)] font-black leading-[1.06] tracking-normal">
-          Хочешь сайт, который выглядит сильно и приводит заявки?
+          Нужен сайт, который приводит заявки?
         </h2>
         <p className="mt-7 max-w-[640px] text-base leading-8 text-white/[0.68] sm:text-lg">
-          Напиши мне — обсудим задачу, подберём формат и поймём, что лучше сделать: лендинг, сайт, бот или полноценный веб-сервис.
+          Напиши мне — подберу формат, сроки и понятный план запуска.
         </p>
 
         <div ref={linksRef} className="mt-9 flex flex-wrap justify-center gap-3">
@@ -96,12 +96,25 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="relative z-20 mx-auto flex max-w-[1180px] flex-col items-center justify-between gap-4 border-t border-white/[0.12] pt-6 text-sm text-white/[0.52] sm:flex-row">
-        <p className="chrome-text text-[0.68rem]">© 2026 Тамерлан. Сайты / боты / веб-сервисы</p>
+      <div className="relative z-20 mx-auto grid max-w-[1180px] gap-5 border-t border-white/[0.12] pt-6 text-sm text-white/[0.52] lg:grid-cols-[1fr_auto_1fr] lg:items-center">
+        <div>
+          <p className="chrome-text text-[0.68rem]">© 2026 Тамерлан. Сайты / боты / веб-сервисы</p>
+          <p className="mt-2 text-sm leading-6 text-white/[0.42]">ИНН: 542200280252</p>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 lg:justify-center">
+          <a href="/offer" className="font-semibold text-flame transition hover:text-white">
+            Договор-оферта
+          </a>
+          <a href="/privacy" className="font-semibold text-flame transition hover:text-white">
+            Политика обработки персональных данных
+          </a>
+        </div>
+
         <button
           type="button"
           onClick={scrollToTop}
-          className="footer-glass-pill grid h-12 w-12 place-items-center rounded-full text-white/[0.72] transition hover:text-white"
+          className="footer-glass-pill grid h-12 w-12 place-items-center rounded-full text-white/[0.72] transition hover:text-white lg:ml-auto"
           aria-label="Наверх"
         >
           <ArrowUp size={18} />

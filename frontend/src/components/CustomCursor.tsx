@@ -45,7 +45,7 @@ export function CustomCursor() {
   return (
     <motion.div
       aria-hidden
-      className="pointer-events-none fixed left-0 top-0 z-[10001] h-10 w-10 rounded-full border border-flame/80 mix-blend-screen max-md:hidden"
+      className="custom-cursor pointer-events-none fixed left-0 top-0 z-[10001] h-10 w-10 rounded-full border border-flame/80 mix-blend-screen max-md:hidden"
       style={{ x, y }}
       animate={{
         scale: active ? 1.85 : 1,
